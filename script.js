@@ -42,4 +42,46 @@ document.addEventListener('DOMContentLoaded', function () {
       item.classList.add('visible');
     });
   }
+
+  if (isSmallViewport && !prefersReducedMotion) {
+    const mobileCards = document.querySelectorAll(
+      '.tool-card, .case-card, .identity-card, .profile-panel, .contact-panel, .contact-links-panel, .terminal-block'
+    );
+
+    if (mobileCards.length) {
+      let ticking = false;
+
+      mobileCards.forEach(function (card) {
+        card.classList.add('mobile-scroll-card');
+      });
+
+      const updateCardScale = function () {
+        const viewportCenter = window.innerHeight * 0.5;
+        const effectRadius = window.innerHeight * 0.65;
+
+        mobileCards.forEach(function (card) {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.top + rect.height / 2;
+          const distanceFromCenter = Math.abs(viewportCenter - cardCenter);
+          const normalized = Math.min(distanceFromCenter / effectRadius, 1);
+          const scale = 1.04 - normalized * 0.08;
+
+          card.style.transform = 'scale(' + scale.toFixed(3) + ')';
+        });
+
+        ticking = false;
+      };
+
+      const requestScaleUpdate = function () {
+        if (!ticking) {
+          window.requestAnimationFrame(updateCardScale);
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', requestScaleUpdate, { passive: true });
+      window.addEventListener('resize', requestScaleUpdate);
+      requestScaleUpdate();
+    }
+  }
 });

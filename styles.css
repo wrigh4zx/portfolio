@@ -1302,6 +1302,22 @@ button {
   .footer-links {
     justify-content: flex-start;
   }
+
+  .mobile-scroll-card {
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 0.22s ease-out;
+  }
+
+  .tool-card,
+  .case-card,
+  .identity-card,
+  .profile-panel,
+  .terminal-block,
+  .contact-panel,
+  .contact-links-panel {
+    margin-bottom: 0.45rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
