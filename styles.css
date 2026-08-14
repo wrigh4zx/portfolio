@@ -491,7 +491,7 @@ button {
   border-radius: 50%;
   background: var(--green);
   box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.75);
-  animation: pulse 2s infinite;
+  animation: pulse 1.6s infinite;
   vertical-align: middle;
 }
 
@@ -620,7 +620,7 @@ button {
   background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
   border-radius: 999px;
   will-change: transform;
-  animation: scan 2.8s linear infinite;
+  animation: scan 2.3s linear infinite;
 }
 
 @keyframes scan {
@@ -1333,7 +1333,7 @@ button {
   .loader-bar span,
   .pulse-dot,
   .cursor {
-    animation: scan 6s linear infinite !important;
+    animation: scan 4.8s linear infinite !important;
   }
 
   .pulse-dot {
