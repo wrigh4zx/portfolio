@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
+  const revealItems = document.querySelectorAll('.reveal');
+  const isSmallViewport = window.matchMedia('(max-width: 760px)').matches;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', function () {
@@ -16,8 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  const revealItems = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
+  // Keep content immediately visible on small screens and reduced-motion devices.
+  if (isSmallViewport || prefersReducedMotion) {
+    revealItems.forEach(function (item) {
+      item.classList.add('visible');
+    });
+  } else if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {

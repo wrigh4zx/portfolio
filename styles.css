@@ -615,16 +615,17 @@ button {
 
 .loader-bar span {
   display: block;
-  width: 100%;
+  width: 42%;
   height: 100%;
   background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
-  animation: scan 3.2s ease-in-out infinite;
+  border-radius: 999px;
+  will-change: transform;
+  animation: scan 2.8s linear infinite;
 }
 
 @keyframes scan {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
 }
 
 .panel-body {
@@ -1311,6 +1312,20 @@ button {
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  .loader-bar span,
+  .pulse-dot,
+  .cursor {
+    animation: scan 6s linear infinite !important;
+  }
+
+  .pulse-dot {
+    animation-name: pulse !important;
+  }
+
+  .cursor {
+    animation-name: blink !important;
   }
 
   .reveal {
